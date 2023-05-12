@@ -1,0 +1,2 @@
+-- run as db2 -txf
+select 'create or replace alias dsgdvusr.'||rtrim(tabname)|| ' for table '||rtrim(tabschema)||'.'||rtrim(tabname)|| '  ; ' from syscat.tables where tabschema not like 'SYS%'  and type = 'T' ;

@@ -1,0 +1,11 @@
+connect to live ;
+set schema wscomusr;
+select count(1) from suborders ;
+select count(1) from ordrelease ;
+select count(1) from ordadjust ;
+select count(1) from ordstat ;
+select count(1) from ordtax ;
+select count(1) from ordoptions ;
+select count(1) from ordpayinfo ;
+select count(1) from ppcextdata ;
+terminate;

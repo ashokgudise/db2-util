@@ -1,0 +1,17 @@
+#!/bin/ksh
+
+. /home/dirsvcs/sqllib/db2profile
+
+db2 connect to wasdss > /dev/null
+
+db2 "reset monitor for database wasdss" > /dev/null
+
+###  !!!  Change the sleep interval to the number of seconds that you want the process to run ... 
+
+sleep 60 
+
+db2 "get snapshot for dynamic sql on wasdss" > snapshot_dynamic_sql_wasdss_temp.log
+
+/udb/dirsvcs/wasdss/udb09/scripts/analyze_dynamicsql.ksh -i snapshot_dynamic_sql_wasdss_temp.log -c 0 -t 0 -o /udb/dirsvcs/wasdss/udb09/scripts/analyze_dynamicsql_specific_timeframe_wasdss_`date +%Y%m%d%H%M`.log 2> /dev/null
+
+db2 terminate > /dev/null
